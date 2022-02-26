@@ -1,0 +1,50 @@
+﻿@model IEnumerable<InterviewTestExercise.Domain.Entities.Student>
+
+@{
+    ViewData["Title"] = "StudentsView";
+}
+
+<h1>StudentsView</h1>
+
+<table class="table">
+    @if (Model.Count() < 1)
+    {
+        <tr>No records in the database</tr>
+    }
+    else
+    {
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AverageGrade)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AverageGrade)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Add Grade", "AddGrade", new { id = item.IdStudent})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>
